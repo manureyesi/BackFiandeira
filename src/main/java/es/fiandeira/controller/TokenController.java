@@ -15,19 +15,19 @@ public class TokenController {
 
 	private static final Logger LOG = Logger.getLogger(TokenController.class);
 	
-	@ApiOperation(
-	        value = "Envia correo contacto",
-	        notes = "Envio correo contacto a la comunidad y una confirmación al usuario"
+		@ApiOperation(
+	        value = "Autentificacion Uusario",
+	        notes = "Autentifica el usuario generando un Token de autorizacion con sus permisos"
 	    )
-		@RequestMapping(value = "/contacto", method = RequestMethod.POST)
-		public String loginUsuario(
+		@RequestMapping(value = "/auth/token", method = RequestMethod.POST)
+		public String autentificacionUsuario (
 				@RequestHeader("app-consumidor") String appConsumidor,
 				@RequestHeader("api-key") String apiKey,
 				@RequestHeader(value = "ip", required = false) String ip) {
 				
-			LOG.info("Pruebas");
+			LOG.info("[POST] /auth/token V: ");
 		
-					return "Hola";
+			return "Hola";
 		}
 	
 }
