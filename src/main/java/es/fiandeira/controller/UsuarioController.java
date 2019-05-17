@@ -11,20 +11,20 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-public class TokenController {
+public class UsuarioController {
 
-	private static final Logger LOG = Logger.getLogger(TokenController.class);
+	private static final Logger LOG = Logger.getLogger(UsuarioController.class);
 	
 	@ApiOperation(
-        value = "Autentificacion Uusario",
-        notes = "Autentifica el usuario generando un Token de autorizacion con sus permisos"
+        value = "Crear Usuario",
+        notes = "Crear usuario con Rango por defecto"
     )
-	@RequestMapping(value = "/auth/token", method = RequestMethod.POST)
+	@RequestMapping(value = "/usuario/crearUsuario", method = RequestMethod.POST)
 	public String autentificacionUsuario (
 			@RequestHeader("app-consumidor") String appConsumidor,
 			@RequestHeader(value = "ip", required = false) String ip) {
 			
-		LOG.info("[POST] /auth/token appConsumidor: ".concat(appConsumidor).concat(" ip: ").concat(ip));
+		LOG.info("[POST] /usuario/crearUsuario appConsumidor: ".concat(appConsumidor).concat(" ip: ").concat(ip));
 	
 		
 		return "Hola";
