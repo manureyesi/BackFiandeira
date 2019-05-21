@@ -12,8 +12,10 @@ public enum TipoError {
 	ERROR_TOKEN_NO_EXISTE(11, "El Token pasado no existe"),
 	ERROR_TOKEN_CADUCADO(12, "El Token esta caducado"),
 	//Usuario Error
-	USUARIO_ERROR_NO_ENCONTRADO(110, "No se ha podido encontrar enformacion del Usuario"),
-	USUARIO_ERROR(111, "Usuario o contraseña no validos");
+	USUARIO_ERROR_REPETIDO(110, "Existe un usuario registrado con el mismo correo"),
+	USUARIO_ERROR_GENERAR_PASSWORD(111, "Error al generar contraseña"),
+	USUARIO_ERROR_NO_ENCONTRADO(112, "No se ha podido encontrar enformacion del Usuario"),
+	USUARIO_ERROR(113, "Usuario o contraseña no validos");
 
 	private final int codigo;
 	private final String descripcion;
