@@ -1,12 +1,14 @@
-package es.fiandeira.backFiandeira;
+package es.fiandeira;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @SpringBootApplication
+@ComponentScan({ "es.fiandeira" })
 @EnableJpaRepositories
 @Import(SwaggerConfiguration.class)
 public class BackFiandeiraApplication {

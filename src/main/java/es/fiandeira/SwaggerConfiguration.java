@@ -1,4 +1,4 @@
-package es.fiandeira.backFiandeira;
+package es.fiandeira;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ public class SwaggerConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()
-          .apis(RequestHandlerSelectors.basePackage("gal.skdragons"))
+          .apis(RequestHandlerSelectors.basePackage("es.fiandeira"))
           .paths(PathSelectors.any())
           .build();                                           
     }
