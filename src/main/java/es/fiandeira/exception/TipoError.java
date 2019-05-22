@@ -12,6 +12,8 @@ public enum TipoError {
 	ERROR_TOKEN_NO_EXISTE(11, "El Token pasado no existe"),
 	ERROR_TOKEN_CADUCADO(12, "El Token esta caducado"),
 	ERROR_TOKEN_GENERADO(13, "Error al generar Token Usuario"),
+	//Patrones
+	ERROR_PATRON_CORREO(80, "Error al validar Patron correo"),
 	//Usuario Error
 	USUARIO_ERROR_REPETIDO(110, "Existe un usuario registrado con el mismo correo"),
 	USUARIO_ERROR_GENERAR_PASSWORD(111, "Error al generar contraseña"),

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.fiandeira.configuration.filters.HeaderFilterCustom;
 import es.fiandeira.exception.BodyValidationException;
 import es.fiandeira.exception.ErrorFiandeiraException;
 import es.fiandeira.exception.TipoError;
@@ -31,6 +32,7 @@ public class TokenController {
         value = "Crear Token Usuario",
         notes = "Crear Token usuario"
     )
+	@HeaderFilterCustom
 	@RequestMapping(value = "/auth/token", method = RequestMethod.POST)
 	public TokenRespuestaVO crearToken (
 			@RequestHeader("app-consumidor") final String appConsumidor,

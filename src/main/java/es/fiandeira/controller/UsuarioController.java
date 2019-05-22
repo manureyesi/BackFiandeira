@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.fiandeira.configuration.filters.HeaderFilterCustom;
 import es.fiandeira.exception.BodyValidationException;
 import es.fiandeira.exception.ErrorFiandeiraException;
 import es.fiandeira.exception.HeaderValidationException;
@@ -33,6 +34,7 @@ public class UsuarioController {
         value = "Crear Usuario",
         notes = "Crear usuario con Rango por defecto"
     )
+	@HeaderFilterCustom
 	@RequestMapping(value = "/usuario/crearUsuario", method = RequestMethod.POST)
 	public ResultadoCreacionUsuarioVO crearUsuario (
 			@RequestHeader("app-consumidor") final String appConsumidor,

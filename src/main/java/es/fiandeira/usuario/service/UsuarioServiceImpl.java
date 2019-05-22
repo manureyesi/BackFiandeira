@@ -2,6 +2,8 @@ package es.fiandeira.usuario.service;
 
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,15 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	public UsuarioVO crearUsuario(final UsuarioBody usuarioBody) throws ErrorFiandeiraException {
 
 		LOG.info("crearUsuario: Preparando creacion usuario ".concat(usuarioBody.getCorreo()));
+		
+		//Validar Correo
+		Pattern pattern = Pattern.compile(Constantes.PATRON_CORREO);
+		Matcher mather = pattern.matcher(usuarioBody.getCorreo());
+		
+		if (mather.find()) {
+			LOG.error("crearUsuario: Error validando correo ".concat(usuarioBody.getCorreo()));
+			throw new ErrorFiandeiraException(TipoError.ERROR_PATRON_CORREO);
+		}
 		
 		//Comprobar Usuario repetido
 		Usuario usuariosAux = 
