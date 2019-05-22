@@ -43,7 +43,7 @@ public class TokenController {
 		try {
 			body.comprobarCamposObligatorios();
 			resultado = new ResultadoVO(appConsumidor, TipoError.OK.getCodigo() , TipoError.OK.getDescripcion());
-		} catch (BodyValidationException | HeaderValidationException e) {
+		} catch (BodyValidationException e) {
 			LOG.error("Error Body y Header", e);
 			resultado = new ResultadoVO(appConsumidor, e.getCodigoError(), e.getDescripcionError());
 		} catch (ErrorFiandeiraException e) {
