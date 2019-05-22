@@ -18,6 +18,24 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>des</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<resources.dir>conf/des</resources.dir>
+			</properties>
+		</profile>
+		<profile>
+			<id>pro</id>
+			<properties>
+				<resources.dir>conf/pro</resources.dir>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<!-- Libreria FIANDEIRA -->
 		<dependency>
