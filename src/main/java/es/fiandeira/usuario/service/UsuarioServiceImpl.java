@@ -1,19 +1,21 @@
 package es.fiandeira.usuario.service;
 
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import es.fiandeira.exception.ErrorFiandeiraException;
 import es.fiandeira.exception.TipoError;
+import es.fiandeira.maestroRangos.models.MaestrosRangos;
+import es.fiandeira.maestroRangos.repository.MaestrosRangoRepository;
 import es.fiandeira.rangos.models.Rangos;
 import es.fiandeira.rangos.models.RangosPK;
 import es.fiandeira.rangos.repository.RangosRepository;
 import es.fiandeira.usuario.body.UsuarioBody;
+import es.fiandeira.usuario.mapper.UsuarioMapper;
 import es.fiandeira.usuario.models.Usuario;
 import es.fiandeira.usuario.repository.UsuarioRepository;
 import es.fiandeira.usuario.utiles.IContrasenaUtiles;
@@ -30,6 +32,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	
 	@Autowired
 	private RangosRepository rangosRepository;
+	
+	@Autowired
+	private MaestrosRangoRepository maestrosRangoRepository;
 	
 	@Autowired
 	private IContrasenaUtiles contrasenaUtiles;
@@ -70,21 +75,22 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		
 		LOG.info("crearUsuario: Usuaio creado con id ".concat(usuariosAux.getId().toString()).concat(" correo ").concat(usuariosAux.getCorreo()));
 		
+		MaestrosRangos maestroRangos =  maestrosRangoRepository.buscarMaestroRangoPorId(Constantes.ID_RANGO_GENERAL);
+		
 		Rangos rango = new Rangos(new RangosPK(
 				usuariosAux.getId(),
-				Constantes.ID_RANGO_GENERAL));
+				maestroRangos.getId()),
+				maestroRangos);
 		
 		//Guardar Rango
 		rangosRepository.save(rango);
-		
+
+		List<Rangos> listaRangos = rangosRepository.buscarRangosPorIdUsuario(usuariosAux.getId());
+
 		LOG.info("crearUsuario: Añadido usuario ".concat(usuariosAux.getId().toString()).concat(" a rango General ").concat(rango.toString()));
 		
-		return new UsuarioVO(
-				usuariosAux.getId(),
-				usuariosAux.getCorreo(),
-				usuariosAux.getNombre(),
-				usuariosAux.getApellidos());
-		
+		return UsuarioMapper.mapperUsuarioToUsuarioVO(usuariosAux, listaRangos);
+				
 	}
 
 }

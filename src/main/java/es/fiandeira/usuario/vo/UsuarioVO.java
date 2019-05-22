@@ -1,23 +1,28 @@
 package es.fiandeira.usuario.vo;
 
+import java.util.List;
+
 public class UsuarioVO {
 
 	private final Long id;
 	private final String correo;
 	private final String nombre;
 	private final String apellidos;
+	private final List<RangoVO> listaRangos;
 	
 	/**
 	 * @param id
 	 * @param correo
 	 * @param nombre
 	 * @param apellidos
+	 * @param listaRangos
 	 */
-	public UsuarioVO(Long id, String correo, String nombre, String apellidos) {
+	public UsuarioVO(Long id, String correo, String nombre, String apellidos, List<RangoVO> listaRangos) {
 		this.id = id;
 		this.correo = correo;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
+		this.listaRangos = listaRangos;
 	}
 
 	/**
@@ -48,6 +53,13 @@ public class UsuarioVO {
 		return apellidos;
 	}
 
+	/**
+	 * @return the listaRangos
+	 */
+	public List<RangoVO> getListaRangos() {
+		return listaRangos;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -62,8 +74,10 @@ public class UsuarioVO {
 		builder.append(nombre);
 		builder.append(", apellidos=");
 		builder.append(apellidos);
+		builder.append(", listaRangos=");
+		builder.append(listaRangos);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+		
 }

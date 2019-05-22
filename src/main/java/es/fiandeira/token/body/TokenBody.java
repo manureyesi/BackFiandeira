@@ -34,7 +34,7 @@ public class TokenBody {
 	 */
 	public void comprobarCamposObligatorios () throws BodyValidationException {
 		if (StringUtils.isBlank(this.correo) || StringUtils.isBlank(this.contrasena) 
-				|| StringUtils.isBlank(this.ip)) {
+				|| StringUtils.isBlank(this.ip) || StringUtils.isBlank(this.idApp)) {
 			throw new BodyValidationException("Error, campos obligatorios Body", TipoError.ERROR_BODY);
 		}
 	}
