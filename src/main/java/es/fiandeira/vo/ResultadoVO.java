@@ -1,5 +1,8 @@
 package es.fiandeira.vo;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class ResultadoVO {
 
 	private final String appConsumidor;
@@ -38,20 +41,14 @@ public class ResultadoVO {
 		return descripcion;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ResultadoVO [appConsumidor=");
-		builder.append(appConsumidor);
-		builder.append(", codError=");
-		builder.append(codError);
-		builder.append(", descripcion=");
-		builder.append(descripcion);
-		builder.append("]");
-		return builder.toString();
+		return ToStringBuilder.reflectionToString(
+				this,
+				ToStringStyle.MULTI_LINE_STYLE);
 	}
 	
 }
