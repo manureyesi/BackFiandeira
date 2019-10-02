@@ -47,14 +47,15 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	@Override
 	public UsuarioVO crearUsuario(final UsuarioBody usuarioBody) throws ErrorFiandeiraException {
 
-		LOG.info("crearUsuario: Preparando creacion usuario ".concat(usuarioBody.getCorreo()));
+		final String METHODNAME = "crearUsuario: ";
+		LOG.info(METHODNAME+"Preparando creacion usuario ".concat(usuarioBody.getCorreo()));
 		
 		//Validar Correo
 		Pattern pattern = Pattern.compile(Constantes.PATRON_CORREO);
 		Matcher mather = pattern.matcher(usuarioBody.getCorreo());
 		
 		if (mather.find()) {
-			LOG.error("crearUsuario: Error validando correo ".concat(usuarioBody.getCorreo()));
+			LOG.error(METHODNAME+"Error validando correo ".concat(usuarioBody.getCorreo()));
 			throw new ErrorFiandeiraException(TipoError.ERROR_PATRON_CORREO);
 		}
 		
@@ -63,7 +64,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 				usuarioRepository.buscarUsuarioPorCorreo(usuarioBody.getCorreo());
 		
 		if (usuariosAux!=null) {
-			LOG.error("crearUsuario: El usuario con correo ".concat(usuarioBody.getCorreo()).concat(" ya existe."));
+			LOG.error(METHODNAME+"El usuario con correo ".concat(usuarioBody.getCorreo()).concat(" ya existe."));
 			throw new ErrorFiandeiraException(TipoError.USUARIO_ERROR_REPETIDO);
 		}
 		
@@ -84,7 +85,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		//Buscar Datos Usuario
 		usuariosAux = usuarioRepository.buscarUsuarioPorCorreo(usuarioBody.getCorreo());
 		
-		LOG.info("crearUsuario: Usuaio creado con id ".concat(usuariosAux.getId().toString()).concat(" correo ").concat(usuariosAux.getCorreo()));
+		LOG.info(METHODNAME+"Usuaio creado con id ".concat(usuariosAux.getId().toString()).concat(" correo ").concat(usuariosAux.getCorreo()));
 		
 		MaestrosRangos maestroRangos =  maestrosRangoRepository.buscarMaestroRangoPorId(Constantes.ID_RANGO_GENERAL);
 		
@@ -98,7 +99,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 		List<Rangos> listaRangos = rangosRepository.buscarRangosPorIdUsuario(usuariosAux.getId());
 
-		LOG.info("crearUsuario: Añadido usuario ".concat(usuariosAux.getId().toString()).concat(" a rango General ").concat(rango.toString()));
+		LOG.info(METHODNAME+"Añadido usuario ".concat(usuariosAux.getId().toString()).concat(" a rango General ").concat(rango.toString()));
 		
 		return UsuarioMapper.mapperUsuarioToUsuarioVO(usuariosAux, listaRangos);
 				

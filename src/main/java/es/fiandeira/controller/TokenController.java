@@ -1,5 +1,7 @@
 package es.fiandeira.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,8 +37,8 @@ public class TokenController {
 	@HeaderFilterCustom
 	@RequestMapping(value = "/auth/token", method = RequestMethod.POST)
 	public TokenRespuestaVO crearToken (
+			HttpServletRequest request,
 			@RequestHeader("app-consumidor") final String appConsumidor,
-			@RequestHeader(value = "ip", required = false) final String ip,
 			@RequestBody final TokenBody body) {
 			
 		LOG.info("[POST] /auth/token appConsumidor: ".concat(appConsumidor));
@@ -45,7 +47,7 @@ public class TokenController {
 		
 		try {
 			body.comprobarCamposObligatorios();
-			respuestaToken = tokenService.crearToken(body);
+			respuestaToken = tokenService.crearToken(body, request.getRemoteAddr());
 			respuestaToken.setResultado(new ResultadoVO(appConsumidor, TipoError.OK.getCodigo() , TipoError.OK.getDescripcion()));
 		} catch (BodyValidationException e) {
 			LOG.error("Error Body y Header", e);

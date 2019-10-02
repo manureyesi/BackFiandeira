@@ -10,21 +10,18 @@ public class TokenBody {
 	private final String correo;
 	private final String contrasena;
 	private final String idApp;
-	private final String ip;
 	private final Integer horasValidez;
 	
 	/**
 	 * @param correo
 	 * @param contrasena
 	 * @param idApp
-	 * @param ip
 	 * @param horasValidez
 	 */
-	public TokenBody(String correo, String contrasena, String idApp, String ip, Integer horasValidez) {
+	public TokenBody(String correo, String contrasena, String idApp, Integer horasValidez) {
 		this.correo = correo;
 		this.contrasena = contrasena;
 		this.idApp = idApp;
-		this.ip = ip;
 		this.horasValidez = horasValidez;
 	}
 	
@@ -34,7 +31,7 @@ public class TokenBody {
 	 */
 	public void comprobarCamposObligatorios () throws BodyValidationException {
 		if (StringUtils.isBlank(this.correo) || StringUtils.isBlank(this.contrasena) 
-				|| StringUtils.isBlank(this.ip) || StringUtils.isBlank(this.idApp)) {
+			 || StringUtils.isBlank(this.idApp)) {
 			throw new BodyValidationException("Error, campos obligatorios Body", TipoError.ERROR_BODY);
 		}
 	}
@@ -61,13 +58,6 @@ public class TokenBody {
 	}
 
 	/**
-	 * @return the ip
-	 */
-	public String getIp() {
-		return ip;
-	}
-
-	/**
 	 * @return the horasValidez
 	 */
 	public Integer getHorasValidez() {
@@ -86,8 +76,6 @@ public class TokenBody {
 		builder.append(contrasena);
 		builder.append(", idApp=");
 		builder.append(idApp);
-		builder.append(", ip=");
-		builder.append(ip);
 		builder.append(", horasValidez=");
 		builder.append(horasValidez);
 		builder.append("]");

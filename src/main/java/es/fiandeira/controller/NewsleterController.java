@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.fiandeira.exception.TipoError;
-import es.fiandeira.token.body.TokenBody;
+import es.fiandeira.newsletter.body.NewsletterBody;
 import es.fiandeira.vo.ResultadoVO;
 import io.swagger.annotations.ApiOperation;
 
@@ -29,7 +29,7 @@ public class NewsleterController {
 	public ResponseEntity<ResultadoVO> anadirNewsletter (
 			@RequestHeader("app-consumidor") final String appConsumidor,
 			@RequestHeader(value = "ip", required = false) final String ip,
-			@RequestBody final TokenBody body) {
+			@RequestBody final NewsletterBody body) {
 			
 		LOG.info("[POST] /newsletter/anadir appConsumidor: ".concat(appConsumidor));
 	

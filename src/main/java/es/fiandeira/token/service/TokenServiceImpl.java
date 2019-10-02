@@ -44,7 +44,7 @@ public class TokenServiceImpl implements ITokenService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public TokenRespuestaVO crearToken(TokenBody tokenBody) throws ErrorFiandeiraException {
+	public TokenRespuestaVO crearToken(final TokenBody tokenBody, final String ip) throws ErrorFiandeiraException {
 		
 		LOG.info("crearToken: Peparando creacion token usuario ".concat(tokenBody.getCorreo()));
 		
@@ -104,7 +104,7 @@ public class TokenServiceImpl implements ITokenService {
 				tokenBody.getIdApp(),
 				usuariosAux.getId(),
 				Constantes.INVALIDADO_TOKEN_DEFECTO,
-				tokenBody.getIp(),
+				ip,
 				Constantes.REFRESCABLE_TOKEN_DEFECTO,
 				horasValidez);
 		

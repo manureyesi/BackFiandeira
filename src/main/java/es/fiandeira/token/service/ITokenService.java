@@ -10,8 +10,9 @@ public interface ITokenService {
 	 * Crear Token para un usuario
 	 *
 	 * @param tokenBody
+	 * @param ip
 	 * @throws ErrorFiandeiraException
 	 */
-	public TokenRespuestaVO crearToken (final TokenBody tokenBody) throws ErrorFiandeiraException;
+	public TokenRespuestaVO crearToken (final TokenBody tokenBody, final String ip) throws ErrorFiandeiraException;
 	
 }
