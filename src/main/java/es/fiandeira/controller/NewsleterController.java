@@ -36,6 +36,8 @@ public class NewsleterController {
 		ResponseEntity<ResultadoVO> resulEntity = null;
 		ResultadoVO respuesta = null;
 		
+		//Pruebas
+		
 		//try {
 			respuesta = new ResultadoVO(appConsumidor, TipoError.OK.getCodigo() , TipoError.OK.getDescripcion());
 			resulEntity = new ResponseEntity<ResultadoVO>(respuesta, HttpStatus.OK);
