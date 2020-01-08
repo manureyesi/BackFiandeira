@@ -22,10 +22,16 @@
 
 	<profiles>
 		<profile>
-			<id>des</id>
+			<id>local</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			<properties>
+				<resources.dir>conf/local</resources.dir>
+			</properties>
+		</profile>
+		<profile>
+			<id>des</id>
 			<properties>
 				<resources.dir>conf/des</resources.dir>
 			</properties>
@@ -56,13 +62,10 @@
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.17</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-security</artifactId>
-		    <version>2.1.8.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
